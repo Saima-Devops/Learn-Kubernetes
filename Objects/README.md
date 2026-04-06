@@ -99,3 +99,30 @@ kubectl logs pod/demo-job-pq6rx -n nginx
 ```
 
 ---
+
+## How to create a CronJob?
+
+```bash
+kubectl apply -f cron-job.yml
+```
+
+- ### Verify
+
+```bash
+kubectl get pods -n nginx
+kubectl logs pod/minute-backup-29591773-wq6f6
+```
+
+- ### Delete CronJob
+
+```bash
+kubectl delete -f cron-job.yaml
+```
+
+- ### Delete Pods
+
+```bash
+  kubectl delete pod/minute-backup-29591773-wq6f6 -n nginx
+```
+
+----
