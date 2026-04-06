@@ -196,7 +196,7 @@ spec:
 ```bash
 kubectl apply -f deployment.yaml
 ```
-- ### Delete old Pv & PVc and create again
+- ### Delete old PV & PVC and create again
 
 ```bash
 kubectl delete pv/local-pv 
@@ -210,9 +210,31 @@ kubectl apply -f persistent-volume.yaml
 kubectl get pv -n nginx
 
 kubectl apply -f pv-claim.yaml
-kubectl get pvc -n nginx
 
+kubectl get pvc -n nginx
 kubectl get pods -n nginx
 ```
 
 ----
+
+## How to Expose my nginx app to the outer world 
+
+### - How to create a Service
+
+```bash
+kubectl apply -f service.yaml
+```
+
+**Port Forwarding:**
+```bash
+sudo -E kubectl port-forward service/nginx-service -n nginx 80:0:80 --address=0.0.0.0
+```
+
+**Access Now:**
+
+```bash
+http://<ec2_public_ip>:80
+```
+
+
+<img width="1917" height="658" alt="image" src="https://github.com/user-attachments/assets/31a04376-16ec-4362-a138-dcd13008b5c4" />
