@@ -1,5 +1,4 @@
-# Class Discussion - Session 8
-## Kubernetes Foundations & Container Orchestration
+# Kubernetes Foundations & Container Orchestration
 
 ---
 
