@@ -63,7 +63,7 @@ kubectl delete -f deployment.yml
 ## How to create a ReplicaSet?
 
 ```bash
-kubectl -f replicasets.yml
+kubectl apply -f replicasets.yml
 ```
 
 ---
@@ -74,7 +74,28 @@ kubectl -f replicasets.yml
 kubectl get replicasets -n nginx
 kubectl get pods -n nginx
 ```
+---
 
+## How to create a DaemonSet?
 
-
+```bash
+kubectl apply -f daemonsets.yml
+```
 ----
+
+## How to create a Job?
+
+```bash
+kubectl apply -f job.yml
+```
+----
+
+- ### Verify
+
+```bash
+kubectl get jobs -n nginx
+kubectl get pods -n nginx
+kubectl logs pod/demo-job-pq6rx -n nginx
+```
+
+---
