@@ -1,4 +1,20 @@
-# Setup Nginx Server on EC2 with kind
+# Setup Nginx Server on EC2 with Kind (Kubernetes IN Docker) Type of Cluster
+
+## 🧱 What is Kind?
+
+A tool to run Kubernetes clusters using Docker containers as nodes
+
+- **Cluster type:** Local / development cluster
+
+- **Use case:**
+    - Testing Kubernetes configs
+    - CI/CD pipelines
+
+- **Key idea:** Each “node” is just a Docker container
+
+- **Lightweight, fast, and ideal for developers**
+
+---
 
 ## Overview
 
