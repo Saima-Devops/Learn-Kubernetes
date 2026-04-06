@@ -196,5 +196,23 @@ spec:
 ```bash
 kubectl apply -f deployment.yaml
 ```
+- ### Delete old Pv & PVc and create again
+
+```bash
+kubectl delete pv/local-pv 
+kubectl delete pvc/local-pvc
+```
+
+- ### Create again
+
+```bash
+kubectl apply -f persistent-volume.yaml
+kubectl get pv -n nginx
+
+kubectl apply -f pv-claim.yaml
+kubectl get pvc -n nginx
+
+kubectl get pods -n nginx
+```
 
 ----
