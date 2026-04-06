@@ -103,7 +103,7 @@ kubectl logs pod/demo-job-pq6rx -n nginx
 ## How to create a CronJob?
 
 ```bash
-kubectl apply -f cron-job.yml
+kubectl apply -f cron-job.yml -n nginx
 ```
 
 - ### Verify
@@ -123,6 +123,78 @@ kubectl delete -f cron-job.yaml
 
 ```bash
   kubectl delete pod/minute-backup-29591773-wq6f6 -n nginx
+```
+----
+
+## How to create PV (Persistent Volume)?
+
+```bash
+kubectl apply -f persistent-volume.yaml
+```
+
+- ### Verify
+
+```bash
+kubectl get pv  # You can see the 1Gi Volume is created
+```
+
+---
+
+## How to Claim a Persisitent Volume? 
+
+```bash
+kubectl apply -f pv-claim.yaml
+```
+
+- ### Verify
+
+```bash
+kubectl get pv   # You can see the status is "Bound"
+kubectl get pvc  # local-pvc is allocated/claimed
+```
+
+- ### Assign this volume to any of the pod which will be created through deployment
+
+```bash
+nano deployment.yaml
+```
+
+Add here:
+
+```yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-deployment
+  namespace: nginx
+  labels:
+    app: nginx
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: nginx
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+        - name: nginx
+          image: nginx:latest
+          ports:
+            - containerPort: 80
+          volumeMounts:
+            - name: my-volume
+              mountPath: /var/www/html
+      volumes:
+        - name: my-volume
+          persistentVolumeClaim:
+            claimName: local-pvc
+```
+
+```bash
+kubectl apply -f deployment.yaml
 ```
 
 ----
