@@ -160,6 +160,51 @@ minikube dashboard
 
 ---
 
+## Troubleshooting
+
+If the kubernetes dasboard is not opening in browser:
+
+### ✅ Use kubectl proxy Method
+
+This is the safest and easiest way.
+
+#### Step 1: Start proxy
+
+```bash
+kubectl proxy --address='0.0.0.0' --disable-filter=true
+```
+- `0.0.0.0` → allows external access (important for EC2)
+- `--disable-filter=true` → required for dashboard access
+
+
+#### Step 2: Open EC2 Security Group
+
+Allow inbound traffic on:
+
+- `Port 8001`
+
+#### Step 3: Access Dashboard in Browser
+
+Open:
+
+```bash
+http://<EC2-PUBLIC-IP>:8001/api/v1/namespaces/kubernetes-dashboard/services/http:kubernetes-dashboard:/proxy/
+```
+
+#### Step 4: OPTIONAL - Get Login Token (if required)
+
+if the **Dashboard** requires authentication.
+
+Run:
+
+```bash
+kubectl -n kubernetes-dashboard create token kubernetes-dashboard
+```
+
+> Copy the token and paste it into the dashboard login page.
+
+---
+
 ## ════════════════════════════════════════════════════════
 ## Lab 2 - Understanding kubeconfig
 ## ════════════════════════════════════════════════════════
@@ -684,7 +729,7 @@ kubectl config set-context --current --namespace=default
 kubectl delete namespace k8s-labs
 ```
 
-### ✅ Lab 5 Success Criteria
+### ✅ Successful!
 
 - Can list and explain the main kube-system components
 - Used multiple output formats (-o wide, -o yaml, -o json)
