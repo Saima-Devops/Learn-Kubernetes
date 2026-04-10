@@ -184,6 +184,7 @@ spec:
       targetPort: 3000
       nodePort: 30007
 ```
+---
 
 ### STEP#5 - 🌐 Access your App
 
@@ -216,8 +217,9 @@ kubectl scale deployment kube-demo --replicas=5
 ```bash
 kubectl get pods
 ```
+---
 
-### STEP#6 - 🔐 ConfigMaps & Secrets
+### STEP#7 - 🔐 ConfigMaps & Secrets
 
 Imagine your app needs:
 
@@ -343,10 +345,10 @@ In real production, teams use:
 
 ✅ Best Practices
 
-✔ Never put secrets in ConfigMap
-✔ Use RBAC to restrict access
-✔ Enable encryption at rest in cluster
-✔ Rotate secrets regularly
+✔ Never put secrets in ConfigMap\
+✔ Use RBAC to restrict access\
+✔ Enable encryption at rest in cluster\
+✔ Rotate secrets regularly\
 ✔ Avoid logging secrets
 
 ----
